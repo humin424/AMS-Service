@@ -39,46 +39,14 @@ namespace AMS_Service
             rpTimer = new Timer();
 
             this.rpTimer.Interval = 10000;
-            this.rpTimer.Elapsed += new ElapsedEventHandler(this.Timer_getComputerInfo);
+
+            this.rpTimer.Elapsed += new ElapsedEventHandler(ComputerBaseInfo.Timer_getComputerBaseInfo);
 
             this.rpTimer.Enabled = true;
 
         }
 
-
-
-        private void Timer_getComputerInfo(object sender, ElapsedEventArgs e)
-        {
-            getComputerInfo("Name", "Win32_ComputerSystem");
-
-            getComputerInfo("Domain", "Win32_ComputerSystem");
-
-            getComputerInfo("Manufacturer", "Win32_ComputerSystem");
-
-
-        }
-
-        private void getComputerInfo(string syntax, string hwclass)
-        {
-
-            Report.WriteEvenlog("---------------------------计算机基本信息---------------------------");
-
-            Report.WriteEvenlog(syntax + "：" + hwclass);
-
-            //ManagementObjectSearcher computerInfo = new ManagementObjectSearcher("SELECT Name FROM Win32_ComputerSystem");
-
-
-            //foreach (ManagementObject info in computerInfo.Get())
-            //{
-
-            //    String dataSelect = info[syntax].ToString();
-
-            //    Report.WriteEvenlog(syntax + "：" + dataSelect);
-
-
-            //}
-        }
-
+       
 
         protected override void OnStop()
         {
